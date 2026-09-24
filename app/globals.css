@@ -183,6 +183,12 @@
   background-clip: text;
 }
 
+/* Handy: Plan-Chip ausblenden, solange ein Textfeld (Bildschirmtastatur) aktiv ist,
+   damit er „Weiter“ nicht verdeckt. */
+body:has(input[type="text"]:focus) .plan-chip {
+  display: none;
+}
+
 /* ---------- Bewegung reduzieren ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,

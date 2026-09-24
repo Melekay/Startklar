@@ -166,7 +166,7 @@ export function InterviewAblauf() {
       </Container>
 
       {/* Handy: kleiner Chip mit dem wachsenden Plan */}
-      <div className="no-print fixed inset-x-0 bottom-0 z-30 p-4 lg:hidden">
+      <div className="plan-chip no-print fixed inset-x-0 bottom-0 z-30 p-4 lg:hidden">
         <AnimatePresence>
           {vorschauOffen && (
             <motion.div
