@@ -14,7 +14,7 @@ export function Quellen({ faktIds }: { faktIds: string[] }) {
         <Icon name="book" size={14} />
         <span>Quelle{urls.length > 1 ? "n" : ""}:</span>
         {urls.map((f) => (
-          <a key={f.quelle} href={f.quelle} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-accent">
+          <a key={f.quelle} href={f.quelle} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-6 items-center py-1 underline underline-offset-2 hover:text-accent">
             {f.quelle.replace("https://", "")}
           </a>
         ))}

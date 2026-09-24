@@ -15,7 +15,7 @@ import { RichText } from "@/components/RichText";
 import { anzahlBeantwortet, offenePflichtfragen } from "@/lib/antworten";
 import { erstellePlan } from "@/lib/empfehlung";
 import { schritteAusPlan } from "@/lib/schritte";
-import { useZustand } from "@/lib/store";
+import { setzeFortschritt, useZustand } from "@/lib/store";
 import { anzahl } from "@/lib/text";
 
 const EINSTIEG_ICON = { desktop: "laptop", terminal: "terminal", web: "globe" } as const;
@@ -50,7 +50,7 @@ export function PlanAnsicht() {
 
   if (!geladen) {
     return (
-      <Container className="py-24">
+      <Container className="min-h-[100svh] py-24">
         <p className="text-muted">Dein Plan wird geladen …</p>
       </Container>
     );
@@ -243,7 +243,8 @@ export function PlanAnsicht() {
           {schritte.map((s, i) => (
             <li key={s.schritt.id}>
               <Link
-                href={`/schritte?schritt=${i + 1}`}
+                href="/schritte"
+                onClick={() => setzeFortschritt((f) => ({ ...f, schritt: i }))}
                 className="flex min-h-16 items-center gap-4 rounded-feld border border-line bg-surface p-4 transition hover:-translate-y-0.5 hover:border-accent"
               >
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-surface-2 font-display font-bold">{i + 1}</span>

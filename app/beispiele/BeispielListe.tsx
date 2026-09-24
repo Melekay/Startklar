@@ -38,7 +38,7 @@ export function BeispielListe() {
       </p>
       <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {liste.map((b) => (
-          <BeispielKarte key={b.id} beispiel={b} />
+          <BeispielKarte key={b.id} beispiel={b} ebene="h2" />
         ))}
       </div>
     </Container>

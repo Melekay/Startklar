@@ -18,3 +18,12 @@
 - Englische Version (Inhalte sind bereits von der Oberfläche getrennt).
 - Export des Plans als PDF/Markdown.
 - Echte Screenshots statt Diagramm-Platzhaltern.
+
+## Nachtrag Phase 4
+| # | Entscheidung | Warum |
+|---|---|---|
+| 10 | Interview und Stepper werden mit dem Standardzustand vorgerendert statt mit Lade-Platzhalter | Kein Layout-Sprung (CLS 0), schnelleres LCP; wiederkehrende Nutzer sehen nach dem Laden ihren Stand. |
+| 11 | Kein `?schritt=`-URL-Parameter; die Plan-Seite setzt den Schritt beim Klick im Speicher | `useSearchParams` würde im statischen Export die ganze Seite erst im Browser rendern. |
+| 12 | Basis-CSS in `@layer base` | Sonst überschreiben Element-Regeln die Tailwind-Utilities. |
+| 13 | Glossar-Tooltips mit `display: none` statt `visibility: hidden` | Unsichtbare Tooltips erzeugten auf dem Handy horizontales Scrollen. |
+| 14 | Einzelauswahl springt per Maus/Touch automatisch weiter, per Tastatur nicht | Schneller für Touch; Pfeiltasten wechseln die Auswahl, ohne ungewollt weiterzuspringen. |

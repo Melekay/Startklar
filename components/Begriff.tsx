@@ -21,7 +21,7 @@ export function Begriff({ id, children }: { id: string; children: React.ReactNod
       <span
         id={tooltipId}
         role="tooltip"
-        className="pointer-events-none invisible absolute bottom-full left-1/2 z-30 mb-2 w-64 -translate-x-1/2 rounded-xl border border-line bg-surface p-3 text-left text-sm font-normal leading-snug text-ink opacity-0 shadow-lift transition-opacity group-focus-within/begriff:visible group-focus-within/begriff:opacity-100 group-hover/begriff:visible group-hover/begriff:opacity-100"
+        className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 hidden w-[min(16rem,75vw)] -translate-x-1/2 rounded-xl border border-line bg-surface p-3 text-left text-sm font-normal leading-snug text-ink shadow-lift group-focus-within/begriff:block group-hover/begriff:block"
       >
         <strong className="block font-display text-accent">{begriff.begriff}</strong>
         {begriff.kurz}

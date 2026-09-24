@@ -3,7 +3,7 @@ import { brand } from "@/config/brand";
 import { Container } from "@/components/Container";
 import { HinweisBox } from "@/components/HinweisBox";
 
-export const metadata: Metadata = { title: "Impressum", robots: { index: false } };
+export const metadata: Metadata = { title: "Impressum", description: "Anbieterkennzeichnung (Platzhalter)." };
 
 export default function ImpressumSeite() {
   return (

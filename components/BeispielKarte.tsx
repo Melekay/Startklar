@@ -4,10 +4,11 @@ import { KopierenButton } from "./KopierenButton";
 
 const SCHWIERIGKEIT = { leicht: "Leicht", mittel: "Mittel", fortgeschritten: "Fortgeschritten" } as const;
 
-type Props = { beispiel: Beispiel; grund?: string; mitDummyDaten?: boolean; offen?: boolean };
+type Props = { beispiel: Beispiel; grund?: string; mitDummyDaten?: boolean; offen?: boolean; ebene?: "h2" | "h3" };
 
 /** Karte für ein Beispiel mit kopierbarem erstem Prompt. */
-export function BeispielKarte({ beispiel: b, grund, mitDummyDaten = b.sensibel, offen = false }: Props) {
+export function BeispielKarte({ beispiel: b, grund, mitDummyDaten = b.sensibel, offen = false, ebene = "h3" }: Props) {
+  const Ueberschrift = ebene;
   return (
     <article id={b.id} className="druck-karte group flex h-full flex-col rounded-karte border border-line bg-surface p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
       <div className="flex items-start justify-between gap-4">
@@ -20,7 +21,7 @@ export function BeispielKarte({ beispiel: b, grund, mitDummyDaten = b.sensibel, 
           {b.brauchtGithub && <li className="rounded-pille bg-surface-2 px-2.5 py-1">GitHub</li>}
         </ul>
       </div>
-      <h3 className="mt-5 text-2xl font-bold leading-tight">{b.titel}</h3>
+      <Ueberschrift className="mt-5 text-2xl font-bold leading-tight">{b.titel}</Ueberschrift>
       <p className="mt-2 leading-relaxed text-muted">{b.kurz}</p>
       {grund && (
         <p className="mt-3 flex items-start gap-2 text-sm font-semibold text-accent">

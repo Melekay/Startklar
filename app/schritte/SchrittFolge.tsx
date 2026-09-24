@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { EinstiegsWeg } from "@/content/typen";
 import { Container } from "@/components/Container";
@@ -23,8 +22,6 @@ const WEGE: { weg: EinstiegsWeg; label: string }[] = [
 
 export function SchrittFolge() {
   const { geladen, antworten, fortschritt } = useZustand();
-  const params = useSearchParams();
-  const router = useRouter();
   const reduziert = useReducedMotion();
   const titelRef = useRef<HTMLHeadingElement>(null);
   const [wegWahl, setWegWahl] = useState<EinstiegsWeg | null>(null);
@@ -34,11 +31,7 @@ export function SchrittFolge() {
   const plan = useMemo(() => erstellePlan(antworten), [antworten]);
   const liste = useMemo(() => schritteAusPlan(plan), [plan]);
 
-  const ausUrl = Number(params.get("schritt"));
-  const index = Math.min(
-    Math.max(Number.isInteger(ausUrl) && ausUrl > 0 ? ausUrl - 1 : fortschritt.schritt, 0),
-    liste.length - 1,
-  );
+  const index = Math.min(Math.max(fortschritt.schritt, 0), liste.length - 1);
   const aktuell = liste[index];
   const weg = wegWahl ?? plan.einstieg.weg;
   const erledigt = new Set(fortschritt.erledigt);
@@ -49,18 +42,10 @@ export function SchrittFolge() {
     letzterIndex.current = index;
   }, [index, geladen]);
 
-  if (!geladen) {
-    return (
-      <Container className="py-24">
-        <p className="text-muted">Anleitung wird geladen …</p>
-      </Container>
-    );
-  }
-
   function gehe(ziel: number) {
     const neu = Math.max(0, Math.min(ziel, liste.length - 1));
     setzeFortschritt((f) => ({ ...f, schritt: neu }));
-    router.replace(`/schritte?schritt=${neu + 1}`, { scroll: true });
+    window.scrollTo({ top: 0 });
   }
 
   function erledigtUmschalten(id: string) {
@@ -81,7 +66,7 @@ export function SchrittFolge() {
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="flex items-center justify-between gap-3 lg:block">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-accent">Schritt für Schritt</p>
+              <h1 className="font-sans text-sm font-bold uppercase tracking-[0.18em] text-accent">Schritt für Schritt</h1>
               <p className="mt-1 text-sm text-muted" aria-live="polite">
                 {anzahlErledigt} von {liste.length} erledigt
               </p>

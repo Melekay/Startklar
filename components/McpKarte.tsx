@@ -5,7 +5,8 @@ import { Icon } from "./Icon";
 import { RichText } from "./RichText";
 
 /** Karte für eine MCP-Verbindung. Die Token-Regel ist immer sichtbar. */
-export function McpKarte({ mcp: m, grund }: { mcp: Mcp; grund?: string }) {
+export function McpKarte({ mcp: m, grund, ebene = "h3" }: { mcp: Mcp; grund?: string; ebene?: "h2" | "h3" }) {
+  const Ueberschrift = ebene;
   const zeilen = [
     { icon: "users", label: "Für wen", text: m.fuerWen },
     { icon: "check", label: "Voraussetzung", text: m.voraussetzung },
@@ -19,7 +20,7 @@ export function McpKarte({ mcp: m, grund }: { mcp: Mcp; grund?: string }) {
           <Icon name={m.icon} size={24} />
         </span>
         <div>
-          <h3 className="text-2xl font-bold leading-tight">{m.name}</h3>
+          <Ueberschrift className="text-2xl font-bold leading-tight">{m.name}</Ueberschrift>
           <p className="text-sm text-muted">MCP-Verbindung</p>
         </div>
       </div>

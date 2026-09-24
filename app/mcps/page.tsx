@@ -37,7 +37,7 @@ export default function McpSeite() {
         </div>
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {mcps.map((m) => (
-            <McpKarte key={m.id} mcp={m} />
+            <McpKarte key={m.id} mcp={m} ebene="h2" />
           ))}
         </div>
         <div className="mt-10">

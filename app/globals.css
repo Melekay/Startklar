@@ -124,44 +124,44 @@
   --container-text: 42rem;
 }
 
-/* ---------- Basis ---------- */
-html {
-  -webkit-text-size-adjust: 100%;
-  scroll-padding-top: 5rem;
-}
+/* ---------- Basis (in @layer base, damit Utilities gewinnen) ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
-  text-rendering: optimizeLegibility;
-}
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
 
-h1,
-h2,
-h3,
-.font-display {
-  font-family: var(--font-display);
-  letter-spacing: -0.025em;
-  font-variation-settings: "wdth" 90;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
 
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 3px;
-  border-radius: 0.5rem;
-}
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
 
-::selection {
-  background: var(--gold-200);
-  color: #17140e;
-}
+  ::selection {
+    background: var(--gold-200);
+    color: #17140e;
+  }
 
-code,
-kbd,
-pre {
-  font-family: var(--font-mono);
+  code,
+  kbd,
+  pre {
+    font-family: var(--font-mono);
+  }
 }
 
 /* Weicher Gold-Verlauf als Hintergrund-Element */

@@ -78,14 +78,6 @@ export function InterviewAblauf() {
     else weiter();
   }
 
-  if (!geladen) {
-    return (
-      <Container className="py-24">
-        <p className="text-muted">Interview wird geladen …</p>
-      </Container>
-    );
-  }
-
   const zusammenfassung = planZusammenfassung(antworten);
   const letzte = index === fragen.length - 1;
   const bewegung = reduziert ? 0 : 40;
@@ -94,8 +86,9 @@ export function InterviewAblauf() {
     <div className="gold-glow">
       <Container className="grid gap-10 pb-32 pt-8 sm:pt-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16">
         <div className="min-w-0">
+          <h1 className="sr-only">Interview: 18 Fragen für deinen persönlichen Plan</h1>
           <Fortschritt aktuell={index + 1} gesamt={fragen.length} beantwortet={anzahlBeantwortet(antworten)} label={bloecke[frage.block]} />
-          {!dauerhaft && (
+          {geladen && !dauerhaft && (
             <p className="mt-3 text-xs text-muted">
               Hinweis: Dein Browser erlaubt kein Speichern. Die Antworten gehen beim Neuladen verloren.
             </p>

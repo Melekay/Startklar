@@ -4,7 +4,7 @@ import { HinweisBox } from "@/components/HinweisBox";
 import { Icon } from "@/components/Icon";
 import { SCHLUESSEL } from "@/lib/speicher";
 
-export const metadata: Metadata = { title: "Datenschutz", robots: { index: false } };
+export const metadata: Metadata = { title: "Datenschutz", description: "Keine Cookies, kein Tracking – deine Antworten bleiben im Browser." };
 
 export default function DatenschutzSeite() {
   return (
