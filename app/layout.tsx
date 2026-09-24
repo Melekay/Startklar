@@ -3,6 +3,7 @@ import { brand } from "@/config/brand";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
+import { StartHinweis } from "@/components/StartHinweis";
 import { THEME_SKRIPT } from "@/components/ThemeToggle";
 import { bodyFont, displayFont, monoFont } from "./fonts";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Zum Inhalt springen
         </a>
+        <StartHinweis />
         <MotionProvider>
           <Header />
           <main id="inhalt" className="flex-1">

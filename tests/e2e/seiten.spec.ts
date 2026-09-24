@@ -42,3 +42,8 @@ test("Glossar-Tooltip erscheint bei Tastaturfokus", async ({ page }) => {
   await link.focus();
   await expect(page.getByRole("tooltip").filter({ hasText: "ohne dich vorher zu fragen" }).first()).toBeVisible();
 });
+
+test("Datei-Hinweis erscheint nur bei file://, nicht im normalen Betrieb", async ({ page }) => {
+  await page.goto("/interview");
+  await expect(page.locator("#datei-hinweis")).toBeHidden();
+});

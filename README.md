@@ -37,6 +37,15 @@ npm run dev          # http://localhost:3000
 
 Den Ordner `out/` kannst du auf jedem Webspace/Static-Hosting veröffentlichen.
 
+## Automatische Prüfung (CI)
+
+`.github/workflows/ci.yml` läuft bei jedem Pull Request und jedem Push auf `main`:
+
+1. **Typecheck, Lint, Tests, Build** – wie `npm run check`
+2. **Playwright** (Desktop + Handy) gegen den gebauten Export
+
+Schlägt Playwright fehl, liegen Screenshots und Traces als Artefakt „playwright-ergebnisse“ am Workflow-Lauf.
+
 ## Ordnerstruktur
 
 ```
