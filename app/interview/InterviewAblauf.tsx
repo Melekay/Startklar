@@ -13,6 +13,7 @@ import { Icon } from "@/components/Icon";
 import { planZusammenfassung, PlanVorschau } from "@/components/PlanVorschau";
 import { anzahlBeantwortet, istBeantwortet, offenePflichtfragen } from "@/lib/antworten";
 import { setzeAntworten, setzeFortschritt, useZustand } from "@/lib/store";
+import { anzahl } from "@/lib/text";
 
 export function InterviewAblauf() {
   const { geladen, antworten, fortschritt, dauerhaft } = useZustand();
@@ -100,7 +101,7 @@ export function InterviewAblauf() {
             </p>
           )}
 
-          <div className="relative mt-10 min-h-[28rem]">
+          <div className="relative mt-8 min-h-[18rem] sm:mt-10 sm:min-h-[28rem]">
             <AnimatePresence mode="wait" initial={false} custom={richtung}>
               <motion.div
                 key={frage.id}
@@ -195,7 +196,7 @@ export function InterviewAblauf() {
         >
           <Icon name="sparkles" size={16} className="text-gold-300" />
           <span aria-live="polite">
-            Dein Plan: {zusammenfassung.beispiele} Beispiele, {zusammenfassung.verbindungen} Verbindungen
+            Dein Plan: {anzahl(zusammenfassung.beispiele, "Beispiel", "Beispiele")}, {anzahl(zusammenfassung.verbindungen, "Verbindung", "Verbindungen")}
           </span>
           <Icon name="chevron" size={16} className={`transition ${vorschauOffen ? "-rotate-90" : "rotate-90"}`} />
         </button>

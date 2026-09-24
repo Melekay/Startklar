@@ -6,7 +6,7 @@ import { findeBeispiel } from "@/content/beispiele";
 import { findeMcp } from "@/content/mcps";
 import type { Antworten } from "@/content/typen";
 import { erstellePlan } from "@/lib/empfehlung";
-import { reinerText } from "@/lib/text";
+import { anzahl, reinerText } from "@/lib/text";
 import { Icon } from "./Icon";
 
 const EINSTIEG_ICON = { desktop: "laptop", terminal: "terminal", web: "globe" } as const;
@@ -54,7 +54,7 @@ export function PlanVorschau({ antworten, kompakt = false }: { antworten: Antwor
     bausteine.push({
       id: "beispiele",
       icon: "sparkles",
-      titel: `${plan.beispiele.length} Beispiele`,
+      titel: anzahl(plan.beispiele.length, "Beispiel", "Beispiele"),
       inhalt: (
         <ul className="space-y-1">
           {plan.beispiele.map((b) => (
@@ -70,7 +70,7 @@ export function PlanVorschau({ antworten, kompakt = false }: { antworten: Antwor
     bausteine.push({
       id: "mcps",
       icon: "plug",
-      titel: plan.mcps.jetzt.length ? `${plan.mcps.jetzt.length} Verbindungen` : "Verbindungen: später",
+      titel: plan.mcps.jetzt.length ? anzahl(plan.mcps.jetzt.length, "Verbindung", "Verbindungen") : "Verbindungen: später",
       inhalt: plan.mcps.jetzt.length
         ? plan.mcps.jetzt.map((m) => findeMcp(m.mcpId)?.name).join(", ")
         : "Erst die Grundlagen – das spart Kontext.",

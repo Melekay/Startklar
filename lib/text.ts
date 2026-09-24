@@ -62,3 +62,8 @@ export function findeVerweise(text: string): { fakten: string[]; begriffe: strin
     begriffe: [...text.matchAll(BEGRIFF_RE)].map((m) => m[1]),
   };
 }
+
+/** „1 Verbindung“, „2 Verbindungen“, „0 Verbindungen“. */
+export function anzahl(n: number, einzahl: string, mehrzahl: string): string {
+  return `${n} ${n === 1 ? einzahl : mehrzahl}`;
+}
