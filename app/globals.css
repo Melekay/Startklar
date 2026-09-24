@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* Dunkelmodus über data-theme am <html> (Standard: hell, System wird respektiert). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* =====================================================================
+   DESIGN-TOKENS – die einzige Stelle für Farben, Radien, Schatten, Abstände.
+   Gold = Marken-Bezug „The Golden Lion“.
+   ===================================================================== */
+:root {
+  /* Gold-Skala */
+  --gold-50: #fdf8e9;
+  --gold-100: #faedc4;
+  --gold-200: #f4db8a;
+  --gold-300: #edc655;
+  --gold-400: #e3b12e;
+  --gold-500: #c9961a;
+  --gold-600: #a67912;
+  --gold-700: #7d5a0e;
+  --gold-800: #5e440d;
+  --gold-900: #3f2e0c;
+
+  /* Semantik – hell */
+  --bg: #fbfaf6;
+  --bg-tint: #f5f1e6;
+  --surface: #ffffff;
+  --surface-2: #f7f4ec;
+  --ink: #17140e;
+  --muted: #595347;
+  --line: #e7e1d3;
+  --accent: var(--gold-700); /* Text/Links in Gold, AA auf hell */
+  --accent-fill: var(--gold-400); /* Flächen in Gold */
+  --on-accent: #1d1506;
+  --focus: #1f5fd6;
+  --warn-bg: #fff6d6;
+  --warn-line: #e6c250;
+  --info-bg: #eef3fb;
+  --info-line: #b9cbe8;
+  --tip-bg: #eef7ef;
+  --tip-line: #b4d8b8;
+
+  --glow-1: rgba(227, 177, 46, 0.28);
+  --glow-2: rgba(237, 198, 85, 0.16);
+
+  --shadow-soft: 0 1px 2px rgba(23, 20, 14, 0.04), 0 8px 24px rgba(23, 20, 14, 0.06);
+  --shadow-lift: 0 2px 4px rgba(23, 20, 14, 0.05), 0 18px 48px rgba(23, 20, 14, 0.1);
+  --shadow-gold: 0 10px 30px rgba(201, 150, 26, 0.28);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0d0c09;
+  --bg-tint: #13110c;
+  --surface: #17150f;
+  --surface-2: #1f1c14;
+  --ink: #f6f1e6;
+  --muted: #b8b09f;
+  --line: #2f2b21;
+  --accent: var(--gold-300);
+  --accent-fill: var(--gold-400);
+  --on-accent: #1d1506;
+  --focus: #8ab4ff;
+  --warn-bg: #2a220d;
+  --warn-line: #7a6320;
+  --info-bg: #111a28;
+  --info-line: #2b3d5c;
+  --tip-bg: #10200f;
+  --tip-line: #2d5230;
+
+  --glow-1: rgba(227, 177, 46, 0.18);
+  --glow-2: rgba(237, 198, 85, 0.08);
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 48px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 10px 30px rgba(227, 177, 46, 0.18);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-tint: var(--bg-tint);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fill: var(--accent-fill);
+  --color-on-accent: var(--on-accent);
+  --color-focus: var(--focus);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-line: var(--warn-line);
+  --color-info-bg: var(--info-bg);
+  --color-info-line: var(--info-line);
+  --color-tip-bg: var(--tip-bg);
+  --color-tip-line: var(--tip-line);
+  --color-gold-50: var(--gold-50);
+  --color-gold-100: var(--gold-100);
+  --color-gold-200: var(--gold-200);
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+  --color-gold-700: var(--gold-700);
+  --color-gold-800: var(--gold-800);
+  --color-gold-900: var(--gold-900);
+
+  --font-display: var(--font-display-face), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body-face), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+
+  --radius-karte: 1.5rem;
+  --radius-feld: 1rem;
+  --radius-pille: 999px;
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-gold: var(--shadow-gold);
+
+  --spacing-sektion: 6rem;
+  --container-inhalt: 72rem;
+  --container-text: 42rem;
+}
+
+/* ---------- Basis (in @layer base, damit Utilities gewinnen) ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  ::selection {
+    background: var(--gold-200);
+    color: #17140e;
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Weicher Gold-Verlauf als Hintergrund-Element */
+.gold-glow {
+  background:
+    radial-gradient(60% 60% at 20% 10%, var(--glow-1), transparent 70%),
+    radial-gradient(50% 50% at 90% 30%, var(--glow-2), transparent 70%);
+}
+
+.text-gold-verlauf {
+  background: linear-gradient(100deg, var(--gold-600), var(--gold-400) 45%, var(--gold-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="dark"] .text-gold-verlauf {
+  background: linear-gradient(100deg, var(--gold-300), var(--gold-100) 45%, var(--gold-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ---------- Bewegung reduzieren ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Druck ---------- */
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #fff;
+    --ink: #000;
+    --muted: #333;
+    --line: #bbb;
+    --accent: #000;
+  }
+  .no-print {
+    display: none !important;
+  }
+  body {
+    font-size: 11pt;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .druck-karte {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #bbb !important;
+  }
+  @page {
+    margin: 14mm;
+  }
+}
